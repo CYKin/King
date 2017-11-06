@@ -11,5 +11,13 @@
     <packaging>jar</packaging>
     <name>king-code</name>
 
+    <!-- 依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+    </dependencies>
 
 </project>
