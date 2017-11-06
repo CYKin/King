@@ -5,8 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 字符串处理工具类
- * Author : King
- * Date : 2017/11/2
+ * @author King
+ * @date 2017/11/2
  */
 public class StringUtil {
 
@@ -87,4 +87,41 @@ public class StringUtil {
         }
     }
 
+    /**
+     * 小数转百分数
+     */
+    public static String toPercent(Double str) {
+        StringBuffer sb = new StringBuffer(Double.toString(str * 100.0000d));
+        return sb.append("%").toString();
+    }
+
+    /**
+     * 百分数转小数
+     */
+    public static Double toDecimal(String str) {
+        if (str.charAt(str.length() - 1) == '%'){
+            return Double.parseDouble(str.substring(0, str.length() - 1)) / 100.0000d;
+        }
+        return 0d;
+    }
+
+    /**
+     * 首字母变小写
+     */
+    public static String firstCharToLowerCase(String str) {
+        Character firstChar = str.charAt(0);
+        String tail = str.substring(1);
+        str = Character.toLowerCase(firstChar) + tail;
+        return str;
+    }
+
+    /**
+     * 首字母变大写
+     */
+    public static String firstCharToUpperCase(String str) {
+        Character firstChar = str.charAt(0);
+        String tail = str.substring(1);
+        str = Character.toUpperCase(firstChar) + tail;
+        return str;
+    }
 }
