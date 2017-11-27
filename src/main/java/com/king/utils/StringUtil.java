@@ -5,6 +5,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 字符串处理工具类
+ *
  * @author King
  * @date 2017/11/2
  */
@@ -12,6 +13,7 @@ public class StringUtil {
 
     /**
      * 手机号脱敏(123****4567)
+     *
      * @param phoneNo
      * @return
      */
@@ -24,6 +26,7 @@ public class StringUtil {
 
     /**
      * 银行卡号脱敏 (123456*****7890)
+     *
      * @param cardNo
      * @return
      */
@@ -36,6 +39,7 @@ public class StringUtil {
 
     /**
      * 身份证号脱敏(1234**********5678)
+     *
      * @param idCardNo
      * @return
      */
@@ -48,6 +52,7 @@ public class StringUtil {
 
     /**
      * 只显示第一个汉字(李**)
+     *
      * @param fullName
      * @return
      */
@@ -60,6 +65,7 @@ public class StringUtil {
 
     /**
      * 只显示第二个后的汉字(*四)
+     *
      * @param fullName
      * @return
      */
@@ -72,6 +78,7 @@ public class StringUtil {
 
     /**
      * 邮箱前缀仅显示第一个字母，前缀其他*代替，@及后面的地址显示(1****@123.com)
+     *
      * @param email
      * @return
      */
@@ -99,7 +106,7 @@ public class StringUtil {
      * 百分数转小数
      */
     public static Double toDecimal(String str) {
-        if (str.charAt(str.length() - 1) == '%'){
+        if (str.charAt(str.length() - 1) == '%') {
             return Double.parseDouble(str.substring(0, str.length() - 1)) / 100.0000d;
         }
         return 0d;
