@@ -3,250 +3,43 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
-
 <generatorConfiguration>
     <!--数据库驱动jar -->
-    <classPathEntry
-            location="D:\work\java\maven\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+    <classPathEntry location="D:\Software\mysql-connector-java-5.1.26-bin.jar"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
-        <!--去除注释 （true好像不起作用） -->
+        <!-- 是否去除自动生成的注释 （true：是 false：否） -->
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
-        <!--数据库连接 -->
+        <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/pay?useUnicode=true&amp;characterEncoding=UTF-8"
+                        connectionURL="jdbc:mysql://localhost:3306/testdb?useUnicode=true&amp;characterEncoding=UTF-8"
                         userId="root"
-                        password="sa">
+                        password="root">
         </jdbcConnection>
-        <!--默认false Java type resolver will always use java.math.BigDecimal if
-            the database column is of type DECIMAL or NUMERIC. -->
+        <!-- 默认false Java type resolver will always use java.math.BigDecimal if the database column is of type DECIMAL or NUMERIC. -->
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
-
-        <!--生成实体类 指定包名 以及生成的地址 （可以自定义地址，但是路径不存在不会自动创建 使用Maven生成在target目录下，会自动创建） -->
-        <javaModelGenerator targetPackage="com.mobanker.pay.entity" targetProject="MAVEN">
+        <!-- 生成实体类 指定包名 以及生成的地址 （可以自定义地址，但是路径不存在不会自动创建 使用Maven生成在target目录下，会自动创建） -->
+        <javaModelGenerator targetPackage="com.King.entity" targetProject="MAVEN">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
-        <!--生成SQLMAP文件 -->
-        <sqlMapGenerator targetPackage="mybatis.mappings.mysql" targetProject="MAVEN">
+        <!-- 生成SQLMAP文件 -->
+        <sqlMapGenerator targetPackage="mybatis.mappers.mysql" targetProject="MAVEN">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
-        <!--生成Dao文件 可以配置 type="XMLMAPPER"生成xml的dao实现 constant id="DB2Tables" 修改targetRuntime="MyBatis3" -->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.mobanker.pay.dao" targetProject="MAVEN"
-                             implementationPackage="com.mobanker.pay.dao.impl">
+        <!-- 生成Dao文件 可以配置 type="XMLMAPPER"生成xml的dao实现 constant id="DB2Tables" 编辑targetRuntime="MyBatis3" -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.King.dao" targetProject="MAVEN" implementationPackage="com.King.dao.impl">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <!--对应数据库表 mysql可以加入主键自增 字段命名 忽略某字段等 -->
-        <table tableName="T_BAS_SYSTEM_VARIABLE"
-               domainObjectName="SystemVariable"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
+        <!-- 数据库表 -->
+        <table tableName="T_USER_INFO"></table>
 
-        <table tableName="T_BAS_USERS"
-               domainObjectName="Users"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_BAS_CHANNEL"
-               domainObjectName="Channel"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-        <table tableName="T_BAS_CHANNEL_INFO"
-               domainObjectName="ChannelInfo"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_BILLS"
-               domainObjectName="Bills"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_BILLS_CALL_BACK"
-               domainObjectName="BillsCallBack"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_BILLS_RESPONSE"
-               domainObjectName="BillsResponse"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_BAS_AREAS"
-               domainObjectName="Areas"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_CUSTOMER_INFO"
-               domainObjectName="CustomerInfo"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_CUSTOMER_CHANNEL_ACTIVITE"
-               domainObjectName="CustomerChannelActivite"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-
-        <table tableName="T_CUSTOMER_BANK_CARD"
-               domainObjectName="CustomerBankCard"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-        <table tableName="T_CUSTOMER_AUTH_REALNAME"
-               domainObjectName="CustomerAuthRealName"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-        <table tableName="T_CUSTOMER_CARD_BINDING"
-               domainObjectName="CustomerCardBinding"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
-        <table tableName="T_CUSTOMER_AUTH_RESPONSE"
-               domainObjectName="CustomerAuthResponse"
-               enableInsert="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableCountByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <ignoreColumn column="ID"/>
-            <ignoreColumn column="CREATE_TIME"/>
-            <ignoreColumn column="CREATE_USER"/>
-            <ignoreColumn column="UPDATE_TIME"/>
-            <ignoreColumn column="UPDATE_USER"/>
-        </table>
     </context>
 </generatorConfiguration>
+
