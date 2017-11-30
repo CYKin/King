@@ -2,26 +2,77 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/aop
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/context
-       http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <aop:config/>
     <aop:aspectj-autoproxy/>
+
+    <!-- 注解注入 -->
     <context:annotation-config/>
+
     <!-- 启动包扫描功能 -->
     <context:component-scan base-package="com.king"></context:component-scan>
 
+    <!-- 加载配置文件 -->
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="locations">
             <list>
-                <value>classpath:/spring/*.properties</value>
+                <value>classpath:properties/dev/jdbc.properties</value>
             </list>
         </property>
+    </bean>
+
+    <!-- 数据源 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+        <!-- 加载驱动 -->
+        <property name="driverClassName" value="${db.driverClassName}"></property>
+        <!-- 数据库的名字 -->
+        <property name="url">
+            <value><![CDATA[jdbc:mysql://${db.host}:${db.port}/${db.database}?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true]]></value>
+        </property>
+        <!-- 用户名密码 -->
+        <property name="username" value="${db.userName}"></property>
+        <property name="password" value="${db.passWord}"></property>
+        <!-- 最大连接数 -->
+        <property name="maxTotal" value="${db.maxTotal}"></property>
+        <!-- 最大可空闲 -->
+        <property name="maxIdle" value="${db.maxIdle}"></property>
+        <!-- 最大等待秒数，单位为毫秒， 超过时间会报出错误信息 -->
+        <property name="maxWaitMillis" value="${db.maxWaitMillis}"></property>
+    </bean>
+
+    <!-- 配置事物管理器 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+
+    <!-- 开启事物 -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 配置sqlSessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" />
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mybatis/mappings/*Mapper.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Mapper动态代理 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.king.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
 
     <!-- kaptcha验证码 -->

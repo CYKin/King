@@ -58,7 +58,7 @@ public class LoginController {
 
 
     /**
-     * 获取验证码
+     * 校验验证码
      * @return
      * @throws Exception
      */
