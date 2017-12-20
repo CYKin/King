@@ -6,7 +6,7 @@
         id, name, age
     </sql>
 
-    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="UserInfo">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultType="com.king.entity.UserInfo">
         select
             <include refid="BaseColumn" />
         from t_user_info
@@ -18,11 +18,11 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="UserInfo">
+    <insert id="insertUserInfo" parameterType="com.king.entity.UserInfo">
         insert into t_user_info (name, age) values (#{name,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR})
     </insert>
 
-    <update id="updateByPrimaryKey" parameterType="UserInfo">
+    <update id="updateByPrimaryKey" parameterType="com.king.entity.UserInfo">
         update t_user_info
         set name = #{name,jdbcType=VARCHAR},
         age = #{age,jdbcType=VARCHAR}
