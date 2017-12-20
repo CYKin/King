@@ -34,7 +34,8 @@ public class UserInfoController {
     @ResponseBody
     @RequestMapping(value = "/insert",produces="application/json;charset=UTF-8")
     public void insert(@RequestBody UserInfo userInfo){
-        userInfoBiz.insert(userInfo);
+        System.out.println("----- 数据插入如成功....");
+        //userInfoBiz.insert(userInfo);
     }
 
     @ResponseBody
