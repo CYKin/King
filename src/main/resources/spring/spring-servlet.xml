@@ -18,6 +18,14 @@
     <!-- 开启aop注解方式 -->
     <aop:aspectj-autoproxy/>
 
+    <!-- 配置AOP -->
+    <!--<aop:config>
+        <aop:pointcut id="pointCut" expression="execution(* com.king.web.*.*(..))"/>
+        <aop:aspect ref="aopXml">
+            <aop:around method="around" pointcut-ref="pointCut"/>
+        </aop:aspect>
+    </aop:config>-->
+
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
