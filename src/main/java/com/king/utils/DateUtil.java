@@ -1,5 +1,6 @@
 package com.king.utils;
 
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -211,5 +212,28 @@ public class DateUtil {
         ca.set(Calendar.SECOND, ca.getActualMaximum(Calendar.SECOND));
         ca.set(Calendar.MILLISECOND, ca.getActualMaximum(Calendar.MILLISECOND));
         return ca.getTime();
+    }
+
+    public static void main(String[] args) throws ParseException {
+
+//        SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
+//
+//        //时间戳转换成日期字符串
+//        String dateStr = dateformat.format(Long.valueOf("1516118400000"));
+//        System.out.println(dateStr);
+//
+//        //日期字符串转换成时间戳
+//        long dateLong = dateformat.parse("2018-01-13").getTime();
+//        System.out.println(dateLong);
+
+        String dateStart = "";
+        String dateEnd = "";
+
+        int days = getIntervalDays(parseDate(dateStart,"yyyy-MM-dd"),parseDate(dateEnd,"yyyy-MM-dd"));
+        System.out.println("上班天数："+days);
+
+        DecimalFormat format = new DecimalFormat("0.000");
+        String yearDay = format.format((float)days*5/365);
+        System.out.println("年假天数："+yearDay);
     }
 }
