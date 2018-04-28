@@ -52,7 +52,7 @@ public class HttpClientUtilTest {
 //        urlParameters.add(new BasicNameValuePair("name","123"));
 //        HttpEntity httpEntity = new UrlEncodedFormEntity(urlParameters);
 
-        String json = "{\"mobile\":\"18018662810\"}";
+        String json = "{\"mobile\":\"18012345678\"}";
         StringEntity entity = new StringEntity(json, Consts.UTF_8);
         httpPost.setEntity(entity);
 

@@ -6,10 +6,23 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="king" />
+        <module name="k-common" />
+        <module name="k-king" />
+        <module name="k-quartz" />
+        <module name="k-service" />
+        <module name="k_king" />
+        <module name="k_quartz" />
+        <module name="k_service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="k-common" target="1.7" />
+      <module name="k-king" target="1.7" />
+      <module name="k-quartz" target="1.7" />
+      <module name="k-service" target="1.7" />
+      <module name="k_king" target="1.7" />
+      <module name="k_quartz" target="1.7" />
+      <module name="k_service" target="1.7" />
       <module name="King" target="1.7" />
       <module name="king" target="1.7" />
     </bytecodeTargetLevel>
