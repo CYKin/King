@@ -7,9 +7,15 @@
     <groupId>com.king</groupId>
     <artifactId>king</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>k-king</module>
+        <module>k-quartz</module>
+        <module>k-service</module>
+        <module>k-common</module>
+    </modules>
 
-    <packaging>war</packaging>
-    <name>king-code</name>
+    <packaging>pom</packaging>
+    <name>king</name>
 
     <!-- 依赖 -->
     <dependencies>
@@ -137,14 +143,18 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
     </dependencies>
 
     <build>
-
         <finalName>King</finalName>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>/src/main/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
@@ -162,7 +172,6 @@
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.5</version>
             </plugin>
-
             <!-- 编译插件 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -234,4 +243,17 @@
         </profile>
     </profiles>
 
+    <!-- 上传 -->
+    <!--<distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url></url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url></url>
+        </snapshotRepository>
+    </distributionManagement>-->
 </project>
